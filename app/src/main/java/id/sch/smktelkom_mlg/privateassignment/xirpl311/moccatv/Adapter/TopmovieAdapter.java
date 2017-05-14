@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Results;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Page2Fragment;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.R;
+import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.ScrollingActivity;
 
 import static android.R.id.list;
 
@@ -51,8 +53,8 @@ public class TopmovieAdapter extends RecyclerView.Adapter<TopmovieAdapter.ViewHo
     @Override
     public void onBindViewHolder(TopmovieAdapter.ViewHolder holder, int position) {
 
-        Results results = mlist.get(position);
-        holder.tvName.setText(results.id);
+        final Results results = mlist.get(position);
+        holder.tvName.setText(results.title);
         holder.tvDesc.setText(results.overview);
         image = url+results.backdrop_path;
         Glide.with(context).load(image)
@@ -62,14 +64,25 @@ public class TopmovieAdapter extends RecyclerView.Adapter<TopmovieAdapter.ViewHo
                 .error(R.mipmap.ic_launcher)
                 .into(holder.imageView);
         //setAnimation(holder.itemView,position);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id=results.id;
+                Intent intent = new Intent(context, ScrollingActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("movie_title",results.title);
+                intent.putExtra("poster_path",results.backdrop_path);
+                intent.putExtra("description",results.overview);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         if (mlist != null)
             return mlist.size();
-        else
-            return 0;
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

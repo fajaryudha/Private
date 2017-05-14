@@ -68,7 +68,7 @@ public class Page2Fragment extends Fragment {
                         //}
                     }
 
-                }, new Response.ErrorListener()
+                } , new Response.ErrorListener()
                 {
 
                     @Override
