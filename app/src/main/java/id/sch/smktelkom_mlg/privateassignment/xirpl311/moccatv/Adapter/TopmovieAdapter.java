@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Results;
+import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.NowPlayingFragment;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Page2Fragment;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.R;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.ScrollingActivity;
@@ -30,6 +31,7 @@ import static android.R.id.list;
 public class TopmovieAdapter extends RecyclerView.Adapter<TopmovieAdapter.ViewHolder> {
     ArrayList<Results> mlist;
     Page2Fragment page2fragment;
+    NowPlayingFragment nowPlayingFragment;
     Context context;
     public String url = "https://image.tmdb.org/t/p/w500";
     public String image;
@@ -39,6 +41,12 @@ public class TopmovieAdapter extends RecyclerView.Adapter<TopmovieAdapter.ViewHo
     public TopmovieAdapter(Page2Fragment page2Fragment, ArrayList<Results> mlist,Context context) {
         this.mlist = mlist;
         this.page2fragment = page2Fragment;
+        this.context = context;
+    }
+
+    public TopmovieAdapter(NowPlayingFragment nowPlayingFragment, ArrayList<Results> mlist, Context context) {
+        this.mlist = mlist;
+        this.nowPlayingFragment = nowPlayingFragment;
         this.context = context;
     }
 
@@ -70,6 +78,7 @@ public class TopmovieAdapter extends RecyclerView.Adapter<TopmovieAdapter.ViewHo
                 String id=results.id;
                 Intent intent = new Intent(context, ScrollingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("date",results.release_date);
                 intent.putExtra("movie_title",results.title);
                 intent.putExtra("poster_path",results.backdrop_path);
                 intent.putExtra("description",results.overview);

@@ -8,11 +8,43 @@
     tools:context="id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/DetailDescription"
+        android:id="@+id/Judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:text="Judul" />
 
+    <TextView
+        android:text="Descripsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            />
+
+        <TextView
+        android:text="Release Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Release Date"
+            android:id="@+id/textDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

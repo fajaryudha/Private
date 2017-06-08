@@ -12,10 +12,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Results;
+import io.realm.Realm;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     public String url = "https://image.tmdb.org/t/p/w500";
-    String Id,img,des,gambar;
+    String Id,img,des,gambar,reales;
+    Results results;
+    private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,19 +29,24 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
+        reales = intent.getStringExtra("date");
         Id = intent.getStringExtra("movie_title");
         img = intent.getStringExtra("poster_path");
         des = intent.getStringExtra("description");
         setTitle(Id);
         gambar = url+img;
         ImageView detail = (ImageView) findViewById(R.id.imageViewDetail);
-        TextView descipsi = (TextView) findViewById(R.id.DetailDescription);
+        TextView descipsi = (TextView) findViewById(R.id.textDesc);
+        TextView judul = (TextView) findViewById(R.id.Judul);
+        TextView release = (TextView) findViewById(R.id.textDate);
         Glide.with(this).load(gambar)
                 .crossFade()
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher_round)
                 .error(R.mipmap.ic_launcher)
                 .into(detail);
+        judul.setText(Id);
+        release.setText(reales);
         descipsi.setText(des);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

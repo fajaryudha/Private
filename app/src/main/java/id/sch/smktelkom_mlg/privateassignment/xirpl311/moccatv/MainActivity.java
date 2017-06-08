@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager);
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -120,6 +121,8 @@ public class MainActivity extends AppCompatActivity
         public Fragment getItem(int position) {
             if (position == 0)
                 return new Page2Fragment();
+            else if (position == 1)
+                return new NowPlayingFragment();
             else
                 // getItem is called to instantiate the fragment for the given page.
                 // Return a PlaceholderFragment (defined as a static inner class below).
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                 case 0:
                     return "Top Movie";
                 case 1:
-                    return "SECTION 2";
+                    return "Now Playing";
                 case 2:
                     return "SECTION 3";
             }
