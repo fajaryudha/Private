@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Favorite;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Results;
 import io.realm.Realm;
 
@@ -37,6 +38,7 @@ public class ScrollingActivity extends AppCompatActivity {
         gambar = url+img;
         ImageView detail = (ImageView) findViewById(R.id.imageViewDetail);
         TextView descipsi = (TextView) findViewById(R.id.textDesc);
+        final String title = Id;
         TextView judul = (TextView) findViewById(R.id.Judul);
         TextView release = (TextView) findViewById(R.id.textDate);
         Glide.with(this).load(gambar)
@@ -53,8 +55,9 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Favorite favorite = new Favorite(Id);
+                favorite.save();
+                Snackbar.make(view, "Berhasil Ditambah Ke Favorite",Snackbar.LENGTH_LONG).setAction("Action",null).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
