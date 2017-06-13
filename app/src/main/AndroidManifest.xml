@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.orm.SugarApp"
+        android:name=".Application"
         tools:replace="android:icon,android:theme"
         android:allowBackup="true"
         android:icon="@drawable/ic_local_cafe_black_24dp"
@@ -14,8 +14,9 @@
         android:roundIcon="@drawable/ic_local_cafe_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="DATABASE" android:value="favorite.db" />
-        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="DATABASE" android:value="mocca.db" />
+        <meta-data android:name="VERSION" android:value="8" />
+        <!--meta-data android:name="QUERY_LOG" android:value="true" /-->
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv" />
         <activity
             android:name=".MainActivity"

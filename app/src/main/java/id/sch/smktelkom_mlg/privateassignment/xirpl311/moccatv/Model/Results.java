@@ -1,13 +1,11 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model;
 
-import io.realm.Realm;
-import io.realm.RealmObject;
 
 /**
  * Created by Smktelkom on 5/10/2017.
  */
 
-public class Results extends RealmObject{
+public class Results{
     public String poster_path;
     public String adult;
     public String overview;

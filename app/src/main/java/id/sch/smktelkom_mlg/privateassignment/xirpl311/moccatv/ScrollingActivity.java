@@ -12,16 +12,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Favorite;
+import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.FavouriteItem;
 import id.sch.smktelkom_mlg.privateassignment.xirpl311.moccatv.Model.Results;
-import io.realm.Realm;
 
 public class ScrollingActivity extends AppCompatActivity {
 
     public String url = "https://image.tmdb.org/t/p/w500";
     String Id,img,des,gambar,reales;
     Results results;
-    private Realm realm;
+    FavouriteItem favouriteItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class ScrollingActivity extends AppCompatActivity {
         TextView descipsi = (TextView) findViewById(R.id.textDesc);
         final String title = Id;
         TextView judul = (TextView) findViewById(R.id.Judul);
-        TextView release = (TextView) findViewById(R.id.textDate);
+        final TextView release = (TextView) findViewById(R.id.textDate);
         Glide.with(this).load(gambar)
                 .crossFade()
                 .centerCrop()
@@ -55,9 +54,13 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Favorite favorite = new Favorite(Id);
-                favorite.save();
                 Snackbar.make(view, "Berhasil Ditambah Ke Favorite",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+                Intent intent1 = new Intent(ScrollingActivity.this,YourFavoriteActivity.class);
+                favouriteItem = new FavouriteItem(Id);
+                favouriteItem.save();
+                intent1.putExtra("title",Id);
+                intent1.putExtra("no",reales);
+                startActivity(intent1);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
